@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
-from io import StringIO
-import requests
-from src.preprocess import process_city, analyze_city, get_current_weather  
+from src.preprocess import process_city, get_current_weather  
 
 st.title('Weather Analysis App')
 
