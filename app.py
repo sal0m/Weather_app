@@ -63,7 +63,6 @@ if uploaded_file is not None:
 
     result, city_df = process_city(city_df)
 
-    # Вывод статистики
     st.subheader(f"Описательная статистика для города {city_name}")
     st.write(f"Средняя температура: {result['average_temp']:.2f}°C")
     st.write(f"Минимальная температура: {result['min_temp']:.2f}°C")
@@ -77,23 +76,18 @@ if uploaded_file is not None:
 
     plt.figure(figsize=(12, 6))
 
-    # Линия температуры
     plt.plot(city_df['timestamp'], city_df['temperature'], label='Temperature', color='blue')
 
-    # Скользящее среднее
     plt.plot(city_df['timestamp'], city_df['rolling_mean'], label='Rolling Mean (30)', color='orange')
 
-    # Аномалии
     plt.scatter(result['anomalies']['timestamp'], result['anomalies']['temperature'], 
                 color='red', label='Anomalies', marker='x')
 
-    # Оформление графика
     plt.xlabel('Timestamp')
     plt.ylabel('Temperature (°C)')
     plt.title(f'Temperature Trend and Anomalies for {result["city"]}')
     plt.legend()
     plt.grid(True)
 
-    # Отображение графика в Streamlit
     st.pyplot(plt)
     plt.close()
